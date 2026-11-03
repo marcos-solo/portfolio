@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcos Solomon · Software QA & Systems Engineer</title>
+    <style>
+        /* ---------- reset & base ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --accent: #ea580c;
+            --text: #27272a;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --muted: #64748b;
+        }
+
+        /* ---------- A4 print configuration ---------- */
+        @page {
+            size: A4 portrait;
+            margin: 8mm 10mm;
+        }
+
+        /* ---------- screen & print base ---------- */
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #e4e4e7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+            color: var(--text);
+            line-height: 1.38;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            width: 100%;
+            background: #ffffff;
+            padding: 28px 32px;
+            border-radius: 6px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .cv-actions {
+            position: fixed;
+            top: 14px;
+            left: 14px;
+            z-index: 10;
+            display: flex;
+            gap: 8px;
+        }
+
+        .cv-actions a,
+        .cv-actions button {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background: #ffffff;
+            color: var(--primary);
+            padding: 9px 14px;
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cv-actions a:hover,
+        .cv-actions button:hover {
+            background: #57585a;
+            color: #ffffff;
+            border-color: #0f172a;
+            transform: translateY(-2px);
+        }
+
+        /* ---------- print overrides ---------- */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+                min-height: auto;
+                display: block;
+                font-size: 9.8pt;
+            }
+            .cv-actions {
+                display: none !important;
+            }
+            .cv-container {
+                max-width: 100% !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: white !important;
+            }
+            a {
+                text-decoration: none !important;
+                color: #000000 !important;
+            }
+
+            header, .summary {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            h3 {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .job, .edu-item, .project-item {
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+
+            .job-header, .edu-header {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            li {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                orphans: 2;
+                widows: 2;
+            }
+
+            .right-column section {
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+
+            .domain-list li, .cert-list li {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .highlight-box {
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+        }
+
+        /* ---------- header ---------- */
+        header {
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+            margin: 0 0 2px 0;
+        }
+
+        header h2 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 0 8px 0;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            font-size: 0.85rem;
+            color: #3f3f46;
+        }
+        .contact-info span {
+            display: inline-flex;
+            align-items: center;
+        }
+        .contact-info a {
+            color: #000;
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        /* ---------- summary ---------- */
+        .summary {
+            margin-bottom: 16px;
+            font-size: 0.88rem;
+            color: #27272a;
+            background: #fff7ed;
+            padding: 10px 14px;
+            border-radius: 4px;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* ---------- grid layout ---------- */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1.8fr 1.2fr;
+            gap: 22px;
+        }
+        @media (max-width: 700px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* ---------- sections ---------- */
+        section {
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 3px;
+            margin: 0 0 9px 0;
+            font-size: 0.93rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: 700;
+        }
+
+        /* ---------- experience / education / projects ---------- */
+        .job, .edu-item, .project-item {
+            margin-bottom: 11px;
+        }
+
+        .job-header, .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .company {
+            color: #000;
+            font-weight: 600;
+            font-size: 0.84rem;
+        }
+
+        .date {
+            font-size: 0.78rem;
+            color: var(--muted);
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        ul {
+            margin: 3px 0 2px 0;
+            padding-left: 17px;
+        }
+        li {
+            margin-bottom: 3px;
+            font-size: 0.83rem;
+        }
+
+        /* ---------- badges / chips ---------- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 5px;
+        }
+        .badge {
+            background: var(--light);
+            border: 1px solid #cbd5e1;
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 16px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .badge.highlight {
+            background: #ffedd5;
+            border-color: #fdba74;
+            color: #9a3412;
+        }
+
+        /* ---------- list without bullets ---------- */
+        .domain-list, .cert-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .domain-list li, .cert-list li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 4px;
+            font-size: 0.83rem;
+        }
+        .domain-list li::before, .cert-list li::before {
+            content: "▹";
+            color: var(--accent);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        /* ---------- project links inline ---------- */
+        .project-item a {
+            color: #000;
+            font-weight: 500;
+            border-bottom: 1px dotted #888;
+        }
+
+        /* ---------- highlight box ---------- */
+        .highlight-box {
+            background: #f8fafc;
+            border: 1px dashed var(--accent);
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-size: 0.82rem;
+        }
+        .highlight-box ul {
+            margin: 0;
+        }
+        .highlight-box li {
+            margin-bottom: 3px;
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="cv-actions" aria-label="CV actions">
+    <a href="resume.html">← Back to Portfolio</a>
+    <button type="button" onclick="window.print()">🖨️ Print / Save as PDF</button>
+</nav>
+
+<div class="cv-container">
+    <header>
+        <h1>Marcos Solomon</h1>
+        <h2>Software QA & Systems Engineer</h2>
+        <div class="contact-info">
+            <span>📍 Ruiru, Kiambu, Kenya</span>
+            <span>📞 (254) 741840839</span>
+            <span>✉️ <a href="mailto:Solomonmarcos34@gmail.com">Solomonmarcos34@gmail.com</a></span>
+            <span>🌐 <a href="https://marcos-solo.github.io" target="_blank">marcos-solo.github.io</a></span>
+            <span>🔗 <a href="https://linkedin.com/in/marcos-solomon" target="_blank">linkedin.com/in/marcos-solomon</a></span>
+            <span>💻 <a href="https://github.com/marcos-solo" target="_blank">github.com/marcos-solo</a></span>
+        </div>
+    </header>
+
+    <div class="summary">
+        <strong>Verify quality. Validate APIs. Uncover edge cases.</strong> Detail-driven Software QA &amp; Systems Engineer with a BSc in Business Information Technology. Hands-on experience across manual software testing, REST API validation with Postman, SQL database integrity testing, and root-cause analysis (RCA). Combines scripting in Python and JavaScript with a rigorous systems mindset to document defect lifecycles, test CRM/web workflows, and verify automated client services.
+        <div style="margin-top: 6px; font-size: 0.82rem; color: #334155;">
+            <strong>Focus areas:</strong> Manual QA &amp; Exploratory Testing · API Testing (Postman) · Test Case Design &amp; Defect Logging · SQL Database Testing · Python &amp; JavaScript · Root Cause Analysis (RCA)
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- LEFT COLUMN: experience, projects, education -->
+        <div class="left-column">
+            <section>
+                <h3>Professional Experience</h3>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Corporate & Technical Trainer (Systems & Diagnostics)</span>
+                        <span class="date">March 2026 – Present</span>
+                    </div>
+                    <div class="company">Institute of Advanced Technology (IAT) · Nairobi, Kenya</div>
+                    <ul>
+                        <li><strong>RCA & Diagnostics Mentorship:</strong> Instruct professionals and students in systematic root-cause analysis (RCA), guiding step-by-step diagnostic workflows for software, protocol, and network failures.</li>
+                        <li><strong>Staging & Verification Labs:</strong> Architect reproducible lab environments and test harnesses to simulate production outages, packet anomalies, and configuration drifts.</li>
+                        <li><strong>Test Assessment & Documentation:</strong> Develop structured technical assessments, rubrics, and verification SOPs emphasizing meticulous defect documentation and change control.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">System Designer & QA / Security Developer</span>
+                        <span class="date">July 2024 – January 2025</span>
+                    </div>
+                    <div class="company">Bethsaida Medicare Institute · Kenya</div>
+                    <ul>
+                        <li><strong>Web & CRM Portal QA:</strong> Executed functional, boundary, and exploratory testing across the institute's patient management system and primary web application.</li>
+                        <li><strong>Input Validation & Edge Cases:</strong> Tested form handling, user role-based access controls (RBAC), and session state transitions, uncovering critical logic and authentication flaws.</li>
+                        <li><strong>Defect Reporting & RCA:</strong> Authored comprehensive bug reports featuring exact steps to reproduce, HTTP status codes, server error logs, and remediation guidance for developers.</li>
+                        <li><strong>Database Verification:</strong> Formulated SQL queries to verify data consistency, transaction integrity, and foreign key constraints across relational tables.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Cybersecurity & Systems Analyst Trainee</span>
+                        <span class="date">May 2025 – August 2025</span>
+                    </div>
+                    <div class="company">Cybershujaa · Kenya</div>
+                    <ul>
+                        <li><strong>API & Network Telemetry Analysis:</strong> Monitored enterprise application endpoints, inspected HTTP/S request-response payloads with Wireshark, and identified malformed API structures.</li>
+                        <li><strong>Incident Triage & Defect Investigation:</strong> Investigated software exceptions, application log anomalies, and lateral movement vectors, generating technical post-incident remediation reports.</li>
+                        <li><strong>Process Verification:</strong> Validated security controls, access policies, and automated alerts across simulated multi-tier enterprise systems.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Systems Penetration Tester & Technical Analyst</span>
+                        <span class="date">May 2024 – August 2025</span>
+                    </div>
+                    <div class="company">Society of Forensics and Researchers Association · Kenya</div>
+                    <ul>
+                        <li><strong>Web Application & API Auditing:</strong> Tested client endpoints against OWASP Top 10 vulnerabilities (broken auth, IDOR, input injection) using Burp Suite and Postman.</li>
+                        <li><strong>Vulnerability & Defect Reporting:</strong> Authored structured defect reports detailing reproduction steps, CVSS severity ratings, and remediation roadmaps for executive teams.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h3>Software QA & Testing Methodologies</h3>
+                <div class="highlight-box">
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li>✅ <strong>Manual & Exploratory QA:</strong> Functional testing, boundary value analysis, regression testing, negative test cases.</li>
+                        <li>✅ <strong>API Testing with Postman:</strong> Status code verification (2xx, 4xx, 5xx), request/response JSON schema validation, environment variables, auth tokens.</li>
+                        <li>✅ <strong>Database Testing (SQL):</strong> Querying tables, verifying CRUD persistence, transactional rollbacks, and schema integrity.</li>
+                        <li>✅ <strong>Bug Lifecycle & RCA:</strong> Clear bug reports (summary, severity, steps to reproduce, expected vs. actual, logs, video/screenshot evidence).</li>
+                        <li>✅ <strong>Automation Awareness:</strong> Scripting automated checks with Python, JavaScript, and familiarity with Playwright/Selenium frameworks.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h3>Featured Projects & QA Testing Labs</h3>
+                <div class="project-item">
+                    <ul>
+                        <li><strong>Hospital Decision Support System (DSS):</strong> Designed and executed manual &amp; Postman API test suites for Django REST endpoints and React UI; verified MySQL database integrity, RBAC permissions, and patient record workflows. (<a href="https://github.com/marcos-solo/hosi_dss" target="_blank">github.com/marcos-solo/hosi_dss</a>)</li>
+                        <li><strong>Secure Auth Gateway & Rate Limiter:</strong> Tested REST API endpoints for JWT lifecycles, sliding-window Redis rate limits, brute-force mitigation, and graceful 429/500 error handling in Node.js.</li>
+                        <li><strong>WebSeal International Client Review:</strong> Audited web portal session tokens, HTTP header security, and client-side input validation, delivering actionable defect remediation reports.</li>
+                        <li><strong>Lab Repositories:</strong> <a href="https://marcos-solo.github.io/projects" target="_blank">marcos-solo.github.io/projects</a> · <a href="https://marcos-solo.github.io/labs" target="_blank">labs</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h3>Education</h3>
+                <div class="edu-item">
+                    <div class="edu-header">
+                        <span class="job-title">BSc in Business Information Technology (BBIT)</span>
+                        <span class="date">Graduated 2025</span>
+                    </div>
+                    <div class="company">University of Embu · Embu, Kenya</div>
+                    <p style="font-size: 0.81rem; color: #4b5563; margin-top: 2px;">Core modules: Database Systems, Systems Analysis &amp; Design, Software Engineering, Enterprise Networks &amp; Security.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- RIGHT COLUMN: competencies, certs, skills, referees -->
+        <div class="right-column">
+            <section>
+                <h3>Core QA Competencies</h3>
+                <ul class="domain-list">
+                    <li>Manual & Exploratory Software Testing</li>
+                    <li>REST API Testing (Postman)</li>
+                    <li>Test Case Design & Execution</li>
+                    <li>Defect Reporting & Bug Lifecycle</li>
+                    <li>Root Cause Analysis (RCA)</li>
+                    <li>Database Querying & Verification (SQL)</li>
+                    <li>Boundary Value & Negative Testing</li>
+                    <li>CRM & Web Application Verification</li>
+                    <li>Chatbot & Automation Workflow Testing</li>
+                    <li>Technical Documentation & SOPs</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Technical Skills</h3>
+                <div class="skills-grid">
+                    <span class="badge highlight">Manual QA</span>
+                    <span class="badge highlight">Postman</span>
+                    <span class="badge highlight">REST APIs</span>
+                    <span class="badge highlight">SQL (MySQL/PostgreSQL)</span>
+                    <span class="badge highlight">Python</span>
+                    <span class="badge highlight">JavaScript</span>
+                    <span class="badge highlight">Bug Reporting & RCA</span>
+                    <span class="badge">Playwright / Selenium (Concepts)</span>
+                    <span class="badge">JSON / XML</span>
+                    <span class="badge">Git / GitHub</span>
+                    <span class="badge">Wireshark</span>
+                    <span class="badge">Linux / Bash</span>
+                    <span class="badge">Django REST</span>
+                    <span class="badge">Node.js / React</span>
+                    <span class="badge">Burp Suite</span>
+                    <span class="badge">OWASP Top 10</span>
+                    <span class="badge">Cisco CCNA</span>
+                    <span class="badge">Ansible / Terraform</span>
+                </div>
+            </section>
+
+            <section>
+                <h3>Certifications & Credentials</h3>
+                <ul class="cert-list">
+                    <li><strong>Google Cloud Security Analyst</strong></li>
+                    <li><strong>Security Analyst – Cyber Shujaa</strong></li>
+                    <li>Real Ethical Hacking with Python (PYCEH23+) – Udemy</li>
+                    <li>SOC Operations Specialization – Coursera</li>
+                    <li>Network Security Specialization – Coursera</li>
+                    <li>Certified Ethical Hacker – Alison</li>
+                    <li>CCNA (Core Routing & Switching Modules)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Key Strengths</h3>
+                <ul class="domain-list">
+                    <li>High attention to detail & edge cases</li>
+                    <li>Clear, structured communication</li>
+                    <li>Fast learner on AI/automation platforms</li>
+                    <li>Available 2–5 hours daily (Remote)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Referees</h3>
+                <p style="font-size: 0.83rem; color: var(--muted);">Academic & professional references available upon request.</p>
+            </section>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

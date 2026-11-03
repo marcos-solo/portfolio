@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Marcos Solomon's network engineering, cybersecurity assessments, blue team investigations, infrastructure automation, and software projects.">
+  <meta name="keywords" content="Network Engineering Projects, Terraform, Ansible, Cybersecurity, Blue Team, SOC, Penetration Testing, Marcos Solomon">
+  <title>Projects | Marcos Solomon · Network &amp; Security Engineer</title>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Unified Theme Styles -->
+  <link rel="stylesheet" href="portfolio-theme.css?v=6">
+  <script src="portfolio-nav.js?v=6" defer></script>
+</head>
+<body>
+
+  <!-- Background Interactive Cyber Canvas -->
+  <canvas id="cyber-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">
+        <span class="navbar-brand-badge"><i class="fas fa-shield-halved" aria-hidden="true"></i></span>
+        <span>Marcos Solomon</span>
+      </a>
+      
+      <button class="navbar-toggle" type="button" aria-label="Open navigation menu" aria-controls="site-menu" aria-expanded="false">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <ul class="navbar-menu" id="site-menu" aria-hidden="false">
+        <li><a href="index.html"><i class="fas fa-house" aria-hidden="true"></i> Home</a></li>
+        <li><a href="resume.html"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a></li>
+        <li><a href="projects.html" class="active" aria-current="page"><i class="fas fa-laptop-code" aria-hidden="true"></i> Projects</a></li>
+        <li><a href="labs.html"><i class="fas fa-flask" aria-hidden="true"></i> Lab Challenges</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
+      </ul>
+      
+      <button class="nav-backdrop" type="button" aria-label="Close navigation menu" aria-hidden="true" tabindex="-1"></button>
+    </div>
+  </nav>
+
+  <!-- Projects Section -->
+  <main class="section">
+    <header class="section-header" data-aos="fade-up">
+      <p class="eyebrow">Engineering Portfolio</p>
+      <h2>Featured Projects</h2>
+      <p class="section-subtitle">Real-world implementations across enterprise network design, infrastructure automation, threat investigation, security audits, and full-stack systems.</p>
+    </header>
+
+    <!-- Interactive Filtering & Live Search Toolbar -->
+    <div class="filter-toolbar" data-aos="fade-up" data-aos-delay="100">
+      <div class="filter-search-row">
+        <div class="search-input-wrapper">
+          <i class="fas fa-magnifying-glass search-icon" aria-hidden="true"></i>
+          <input type="text" class="filter-search-input" placeholder="Search projects by keyword, tech, tool (e.g. Terraform, Wireshark, Django)..." aria-label="Search projects">
+          <button type="button" class="search-clear-btn" aria-label="Clear search"><i class="fas fa-times"></i></button>
+        </div>
+        <span class="filter-results-count">Showing 10 of 10</span>
+      </div>
+
+      <div class="filter-pills-row" role="tablist" aria-label="Filter projects by domain">
+        <button type="button" class="filter-pill active" data-category="all" role="tab" aria-selected="true">
+          All Projects <span class="pill-count">10</span>
+        </button>
+        <button type="button" class="filter-pill" data-category="qa-testing" role="tab" aria-selected="false">
+          <i class="fas fa-vial-circle-check" aria-hidden="true"></i> QA &amp; API Testing
+        </button>
+        <button type="button" class="filter-pill" data-category="network-iac" role="tab" aria-selected="false">
+          <i class="fas fa-network-wired" aria-hidden="true"></i> Network &amp; IaC
+        </button>
+        <button type="button" class="filter-pill" data-category="security-assessment" role="tab" aria-selected="false">
+          <i class="fas fa-shield-halved" aria-hidden="true"></i> Security Audits
+        </button>
+        <button type="button" class="filter-pill" data-category="blue-team" role="tab" aria-selected="false">
+          <i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i> Blue Team &amp; Forensics
+        </button>
+        <button type="button" class="filter-pill" data-category="penetration-testing" role="tab" aria-selected="false">
+          <i class="fas fa-crosshairs" aria-hidden="true"></i> Penetration Testing
+        </button>
+        <button type="button" class="filter-pill" data-category="software" role="tab" aria-selected="false">
+          <i class="fas fa-code" aria-hidden="true"></i> Full-Stack Software
+        </button>
+      </div>
+    </div>
+
+    <!-- Fallback card when search yields 0 matches -->
+    <div class="no-results-card">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <h3>No matching projects found</h3>
+      <p>Try searching for a different keyword or selecting another category.</p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="project-list">
+
+      <!-- Project 1: IaC (Featured) -->
+      <article class="project-item featured" id="network-infrastructure-as-code" data-category="network-iac" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-cloud-bolt" aria-hidden="true"></i>
+          </div>
+          <span class="selected-label">Selected Work</span>
+        </div>
+        <h3>Secure Network Infrastructure as Code</h3>
+        <p>Architected and automated repeatable enterprise network environments. Combines Terraform for cloud/network provisioning and Ansible for baseline host hardening, segmented VLAN topologies, least-privilege ACLs, and automated change management.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Terraform</span>
+          <span class="tech-tag">Ansible</span>
+          <span class="tech-tag">VLAN Segmentation</span>
+          <span class="tech-tag">Firewall ACLs</span>
+          <span class="tech-tag">GitOps</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/marcos-solo" target="_blank" rel="noopener noreferrer" class="project-link">
+            <i class="fab fa-github" aria-hidden="true"></i> View Code &amp; Repos
+          </a>
+          <a href="labs.html" class="project-link">
+            <i class="fas fa-flask" aria-hidden="true"></i> Related Labs
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 2: Business Security & QA Assessment (Featured) -->
+      <article class="project-item featured" id="security-assessment" data-category="security-assessment qa-testing" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-shield-halved" aria-hidden="true"></i>
+          </div>
+          <span class="selected-label">Selected Work</span>
+        </div>
+        <h3>Business Systems QA &amp; Security Assessment</h3>
+        <p>Conducted an authorized functional QA and security assessment of Bethsaida Medicare Institute core web platforms and CRM portal. Evaluated authentication mechanisms, access control matrices, and input sanitization, delivering structured defect reports with exact reproduction steps and remediation guidelines.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Manual QA</span>
+          <span class="tech-tag">Burp Suite</span>
+          <span class="tech-tag">OWASP ZAP</span>
+          <span class="tech-tag">Input Validation</span>
+          <span class="tech-tag">Defect Reporting</span>
+        </div>
+        <div class="project-links">
+          <a href="contact.html" class="project-link">
+            <i class="fas fa-file-contract" aria-hidden="true"></i> Request Case Study
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 3: Blue Team Labs Online (Featured) -->
+      <article class="project-item featured" id="blue-team-investigations" data-category="blue-team" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-shield-virus" aria-hidden="true"></i>
+          </div>
+          <span class="selected-label">Selected Work</span>
+        </div>
+        <h3>Blue Team Labs Online Investigations</h3>
+        <p>Executed advanced defensive investigations into business email compromise (BEC), endpoint malicious activity, and lateral movement. Mapped adversary tactics against the MITRE ATT&amp;CK matrix across BTLO scenarios including BEC-KY, Squid Game, Cap, Source, and The Report II.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">BTLO</span>
+          <span class="tech-tag">MITRE ATT&amp;CK</span>
+          <span class="tech-tag">Threat Hunting</span>
+          <span class="tech-tag">Log Correlation</span>
+          <span class="tech-tag">Incident Response</span>
+        </div>
+        <div class="project-links">
+          <a href="labs.html" class="project-link">
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i> View Lab Walkthroughs
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 4: WebSeal International Security -->
+      <article class="project-item" data-category="security-assessment qa-testing" data-aos="fade-up" data-aos-delay="250">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-lock" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3>WebSeal International QA &amp; Security Review</h3>
+        <p>Conducted comprehensive audits on session token lifecycles, HTTP header protections (CSP, HSTS, X-Frame-Options), and client-side access control vulnerabilities across commercial client web services, validating boundary conditions and error handling.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Session Security</span>
+          <span class="tech-tag">API &amp; Web QA</span>
+          <span class="tech-tag">Headers Hardening</span>
+          <span class="tech-tag">OWASP Top 10</span>
+          <span class="tech-tag">Defect Remediation</span>
+        </div>
+        <div class="project-links">
+          <a href="resume.html" class="project-link">
+            <i class="fas fa-user-shield" aria-hidden="true"></i> Audit Experience
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 5: Network Security Design & Operations -->
+      <article class="project-item" data-category="network-iac" data-aos="fade-up" data-aos-delay="300">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-diagram-project" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3>Network Security Design &amp; Operations</h3>
+        <p>Comprehensive enterprise network topology lab implementing multi-zone VLAN segmentation, Spanning Tree (RSTP), inter-VLAN routing, OSPF dynamic routing, stateful firewall rules, IPSec site-to-site VPNs, and deep packet troubleshooting using Wireshark.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Cisco IOS</span>
+          <span class="tech-tag">OSPF / VLANs</span>
+          <span class="tech-tag">IPSec / SSL VPN</span>
+          <span class="tech-tag">Wireshark</span>
+          <span class="tech-tag">ACL Hardening</span>
+        </div>
+        <div class="project-links">
+          <a href="resume.html" class="project-link">
+            <i class="fas fa-circle-info" aria-hidden="true"></i> Network Specs
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 6: HTB & TryHackMe Penetration Testing -->
+      <article class="project-item" data-category="penetration-testing" data-aos="fade-up" data-aos-delay="350">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-crosshairs" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3>HTB &amp; TryHackMe Penetration Testing</h3>
+        <p>Hands-on offensive testing across vulnerable CTF targets (including Cap, Dancing, Fawn, Meow, and The Report II). Followed structured methodology from active network discovery and port enumeration through privilege escalation and technical reporting.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Hack The Box</span>
+          <span class="tech-tag">TryHackMe</span>
+          <span class="tech-tag">Nmap</span>
+          <span class="tech-tag">Metasploit</span>
+          <span class="tech-tag">Privilege Escalation</span>
+        </div>
+        <div class="project-links">
+          <a href="labs.html" class="project-link">
+            <i class="fas fa-flag" aria-hidden="true"></i> See CTF Labs
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 7: Forensics & CTF Investigations -->
+      <article class="project-item" data-category="blue-team" data-aos="fade-up" data-aos-delay="400">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-microscope" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3>Digital Forensics &amp; Incident Artifacts</h3>
+        <p>Investigated forensic challenges on PicoCTF and Sherlocks (including the Operation Blackout case). Extracted memory artifacts, parsed Windows Event logs, identified obfuscated persistence mechanisms, and documented digital chain of custody.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Memory Forensics</span>
+          <span class="tech-tag">Event Log Parsing</span>
+          <span class="tech-tag">PicoCTF</span>
+          <span class="tech-tag">Sherlocks</span>
+          <span class="tech-tag">PCAP Analysis</span>
+        </div>
+        <div class="project-links">
+          <a href="labs.html" class="project-link">
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i> Forensic Cases
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 8: Secure Auth System -->
+      <article class="project-item" data-category="software security-assessment qa-testing" data-aos="fade-up" data-aos-delay="450">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-key" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3>Secure Auth System &amp; Rate Limiter</h3>
+        <p>Engineered and tested an authentication gateway featuring JSON Web Tokens (JWT) and sliding-window Redis rate limiting. Formulated Postman test collections with automated response assertions to verify rate-limit boundary conditions (HTTP 429), token expiration logic, status codes, and input validation handling.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Postman Collections</span>
+          <span class="tech-tag">REST API QA</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Rate Limiting</span>
+          <span class="tech-tag">JWT</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/marcos-solo" target="_blank" rel="noopener noreferrer" class="project-link">
+            <i class="fab fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 9: Hospital Decision Support System -->
+      <article class="project-item" data-category="software qa-testing" data-aos="fade-up" data-aos-delay="500">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-hospital" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3>Hospital Decision Support System (DSS)</h3>
+        <p>Comprehensive healthcare management platform built with Django REST Framework and React. Performed extensive manual and Postman API test suites validating CRUD endpoints, JSON payload structures, HTTP error statuses, MySQL database transaction integrity, and role-based access control (RBAC) boundaries.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Postman API Testing</span>
+          <span class="tech-tag">Django REST</span>
+          <span class="tech-tag">MySQL Verification</span>
+          <span class="tech-tag">REST API</span>
+          <span class="tech-tag">RBAC QA</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/marcos-solo/hosi_dss" target="_blank" rel="noopener noreferrer" class="project-link">
+            <i class="fab fa-github" aria-hidden="true"></i> GitHub Repository
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 10: Tea Harvester Weather Checker -->
+      <article class="project-item" data-category="software" data-aos="fade-up" data-aos-delay="550">
+        <div class="project-top-row">
+          <div class="project-icon">
+            <i class="fas fa-cloud-sun-rain" aria-hidden="true"></i>
+          </div>
+        </div>
+        <h3>Tea Harvester Weather Checker</h3>
+        <p>Agri-tech meteorological application leveraging real-time OpenWeather API telemetry and geolocation to provide smallholder tea farmers with actionable rainfall forecasts, harvesting schedules, and humidity warnings to protect harvest yields.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">OpenWeather API</span>
+          <span class="tech-tag">Geolocation</span>
+          <span class="tech-tag">Data Visuals</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/marcos-solo/tea_harvester_weather-checker" target="_blank" rel="noopener noreferrer" class="project-link">
+            <i class="fab fa-github" aria-hidden="true"></i> GitHub Repository
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <a href="index.html" class="footer-brand">
+        <i class="fas fa-shield-halved" aria-hidden="true"></i> Marcos Solomon
+      </a>
+      
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="labs.html">Lab Challenges</a>
+        <a href="contact.html">Contact</a>
+        <a href="Marcos_solomon_cv.html">Printable CV</a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/marcos-solo" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+        <a href="https://linkedin.com/in/marcos-solomon" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="mailto:solomonmarcos34@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+        <a href="tel:+254741840839" class="social-link" aria-label="Phone"><i class="fas fa-phone" aria-hidden="true"></i></a>
+      </div>
+
+      <p class="copyright">&copy; <span class="current-year">2026</span> Marcos Solomon. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- AOS Animation Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 750,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 80,
+        disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      });
+    });
+  </script>
+
+</body>
+</html>
